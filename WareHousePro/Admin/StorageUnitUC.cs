@@ -27,6 +27,7 @@ namespace WareHousePro.Admin
             loadData();
             loadWareHouse();
             loadType();
+            clear();
         }
         private void loadData()
         {
@@ -36,12 +37,13 @@ namespace WareHousePro.Admin
                         w.name AS Warehouse,
                         t.type_name AS [Storage Type],
                         s.capacity AS Capacity,
-                        s.base_price_per_day AS [Base Price /D],
+                        'Rp ' + FORMAT( s.base_price_per_day, '#,##0') AS [Base Price /D],
                         s.is_active AS Status
                     FROM storage_units s
                     JOIN warehouses w ON w.warehouse_id = s.warehouse_id
-                    JOIN storage_unit_types t ON t.type_id = s.type_id";
-            dataGridView1.DataSource = DBHelper.ExecuteQuery(query);
+                    JOIN storage_unit_types t ON t.type_id = s.type_id
+                    WHERE w.name LIKE @n";
+            dataGridView1.DataSource = DBHelper.ExecuteQuery(query, new SqlParameter("@n", "%" + txtSearch.Text + "%"));
         }
         private void loadWareHouse()
         {
@@ -53,9 +55,9 @@ namespace WareHousePro.Admin
         private void loadType()
         {
             string query = "SELECT type_id, type_name FROM storage_unit_types";
-            cmbWarehouse.DataSource = DBHelper.ExecuteQuery(query);
-            cmbWarehouse.DisplayMember = "type_name";
-            cmbWarehouse.ValueMember = "type_id";
+            cmbType.DataSource = DBHelper.ExecuteQuery(query);
+            cmbType.DisplayMember = "type_name";
+            cmbType.ValueMember = "type_id";
         }
 
 
@@ -73,6 +75,11 @@ namespace WareHousePro.Admin
         //button
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (existCode())
+            {
+                MessageBox.Show("Unit code already exist", "Exist data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (ValidationHelper.hasNull(this, out string msg))
             {
                 MessageBox.Show(msg, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -82,12 +89,14 @@ namespace WareHousePro.Admin
                     INSERT 
                     INTO storage_units (warehouse_id, type_id, unit_code, capacity, base_price_per_day) 
                     VALUES (@w, @t, @u, @c, @b)";
+            string price = txtPrice.Text.Replace("Rp ", "").Replace(",", "");
+
             int i = DBHelper.ExecuteNonQuery(query,
                 new SqlParameter("@w", cmbWarehouse.SelectedValue),
                 new SqlParameter("@t", cmbType.SelectedValue),
                 new SqlParameter("@u", txtCode.Text),
                 new SqlParameter("@c", Convert.ToInt32(txtCapacity.Text)),
-                new SqlParameter("@b", Convert.ToDecimal(txtPrice.Text))
+                new SqlParameter("@b", Convert.ToDecimal(price))
             );
             if (i > 0)
             {
@@ -111,13 +120,15 @@ namespace WareHousePro.Admin
             }
             if (StorageId > 0)
             {
+                string price = txtPrice.Text.Replace("Rp ", "").Replace(",", "");
+
                 string query = "UPDATE storage_units SET warehouse_id = @w, type_id = @t, capacity = @c, base_price_per_day = @b WHERE unit_id = @id";
                 int i = DBHelper.ExecuteNonQuery(query,
                     new SqlParameter("@id", StorageId),
                     new SqlParameter("@w", cmbWarehouse.SelectedValue),
                     new SqlParameter("@t", cmbType.SelectedValue),
                     new SqlParameter("@c", Convert.ToInt32(txtCapacity.Text)),
-                    new SqlParameter("@b", Convert.ToDecimal(txtPrice.Text))
+                    new SqlParameter("@b", Convert.ToDecimal(price))
                 );
                 if(i> 0)
                 {
@@ -161,6 +172,8 @@ namespace WareHousePro.Admin
             cmbType.SelectedIndex = -1;
             cmbWarehouse.SelectedIndex = -1;
             StorageId = 0;
+
+            txtCode.Enabled = true;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -168,9 +181,29 @@ namespace WareHousePro.Admin
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                cmbWarehouse.seleva
-                txtCode.Text = row.Cells["Code"]
+                cmbWarehouse.SelectedIndex = cmbWarehouse.FindStringExact(row.Cells["Warehouse"].Value.ToString());
+                cmbType.SelectedIndex = cmbType.FindStringExact(row.Cells["Storage Type"].Value.ToString());
+                txtCode.Text = row.Cells["Unit Code"].Value.ToString();
+                txtCapacity.Text = row.Cells["Capacity"].Value.ToString();
+                txtPrice.Text = row.Cells["Base Price /D"].Value.ToString();
+
+                txtCode.Enabled = false;
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            loadData();
+        }
+
+
+
+        //validation
+        private bool existCode()
+        {
+            string query = "SELECT COUNT(*) FROM storage_units WHERE unit_code = @u";
+            object unit = DBHelper.ExecuteScalar(query, new SqlParameter("@u", txtCode.Text));
+            return Convert.ToInt32(unit) > 0;
         }
     }
 }

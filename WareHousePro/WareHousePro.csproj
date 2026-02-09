@@ -58,6 +58,12 @@
     <Compile Include="Admin\UserManagementUC.Designer.cs">
       <DependentUpon>UserManagementUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\VoucherManagementUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\VoucherManagementUC.Designer.cs">
+      <DependentUpon>VoucherManagementUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\WarehouseUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserManagementUC.resx">
       <DependentUpon>UserManagementUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\VoucherManagementUC.resx">
+      <DependentUpon>VoucherManagementUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\WarehouseUC.resx">
       <DependentUpon>WarehouseUC.cs</DependentUpon>
