@@ -34,6 +34,7 @@
             this.btnUser = new System.Windows.Forms.Button();
             this.btnWarehouse = new System.Windows.Forms.Button();
             this.pnlAct = new System.Windows.Forms.Panel();
+            this.btnStorageUnit = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +66,7 @@
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Green;
             this.flowLayoutPanel1.Controls.Add(this.btnUser);
             this.flowLayoutPanel1.Controls.Add(this.btnWarehouse);
+            this.flowLayoutPanel1.Controls.Add(this.btnStorageUnit);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 55);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -94,7 +96,7 @@
             this.btnWarehouse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnWarehouse.FlatAppearance.BorderSize = 3;
             this.btnWarehouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWarehouse.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.btnWarehouse.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.btnWarehouse.ForeColor = System.Drawing.Color.Green;
             this.btnWarehouse.Location = new System.Drawing.Point(4, 93);
             this.btnWarehouse.Name = "btnWarehouse";
@@ -111,6 +113,22 @@
             this.pnlAct.Name = "pnlAct";
             this.pnlAct.Size = new System.Drawing.Size(1630, 1051);
             this.pnlAct.TabIndex = 2;
+            // 
+            // btnStorageUnit
+            // 
+            this.btnStorageUnit.BackColor = System.Drawing.Color.White;
+            this.btnStorageUnit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnStorageUnit.FlatAppearance.BorderSize = 3;
+            this.btnStorageUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStorageUnit.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.btnStorageUnit.ForeColor = System.Drawing.Color.Green;
+            this.btnStorageUnit.Location = new System.Drawing.Point(4, 176);
+            this.btnStorageUnit.Name = "btnStorageUnit";
+            this.btnStorageUnit.Size = new System.Drawing.Size(307, 77);
+            this.btnStorageUnit.TabIndex = 0;
+            this.btnStorageUnit.Text = "Storage Unit";
+            this.btnStorageUnit.UseVisualStyleBackColor = false;
+            this.btnStorageUnit.Click += new System.EventHandler(this.btnStorageUnit_Click);
             // 
             // MainForm
             // 
@@ -140,5 +158,6 @@
         private System.Windows.Forms.Button btnWarehouse;
         private System.Windows.Forms.Panel pnlAct;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnStorageUnit;
     }
 }

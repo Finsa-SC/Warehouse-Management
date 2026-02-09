@@ -9,6 +9,15 @@ namespace WareHousePro.core.util
 {
     internal class ValidationHelper
     {
+        public static void onlyNumber(KeyPressEventArgs e, out string msg)
+        {
+            msg = string.Empty;
+            if(!char.IsDigit(e.KeyChar) || e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+                msg = "Only number available in this input";
+            }
+        }
         public static bool hasNull(Control parent, out string msg)
         {
             msg = string.Empty;

@@ -41,7 +41,12 @@ namespace WareHousePro
 
         private void btnWarehouse_Click(object sender, EventArgs e)
         {
+            loadUC(new Admin.WarehouseUC());
+        }
 
+        private void btnStorageUnit_Click(object sender, EventArgs e)
+        {
+            loadUC(new Admin.StorageUnitUC());
         }
     }
 }

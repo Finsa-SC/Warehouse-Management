@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\StorageUnitUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\StorageUnitUC.Designer.cs">
+      <DependentUpon>StorageUnitUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserManagementUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserSession.cs" />
+    <EmbeddedResource Include="Admin\StorageUnitUC.resx">
+      <DependentUpon>StorageUnitUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\UserManagementUC.resx">
       <DependentUpon>UserManagementUC.cs</DependentUpon>
     </EmbeddedResource>
