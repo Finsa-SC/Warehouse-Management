@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\DashboardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\DashboardUC.Designer.cs">
+      <DependentUpon>DashboardUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\StorageUnitUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +78,7 @@
       <DependentUpon>WarehouseUC.cs</DependentUpon>
     </Compile>
     <Compile Include="core\network\DBHelper.cs" />
+    <Compile Include="core\util\CodeBuilder.cs" />
     <Compile Include="core\util\ValidationHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -86,7 +94,28 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Public\BookingDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Public\BookingDetailForm.Designer.cs">
+      <DependentUpon>BookingDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Public\BookingListUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Public\BookingListUC.Designer.cs">
+      <DependentUpon>BookingListUC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Staff\BookingCreationUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Staff\BookingCreationUC.Designer.cs">
+      <DependentUpon>BookingCreationUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSession.cs" />
+    <EmbeddedResource Include="Admin\DashboardUC.resx">
+      <DependentUpon>DashboardUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\StorageUnitUC.resx">
       <DependentUpon>StorageUnitUC.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +143,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Public\BookingListUC.resx">
+      <DependentUpon>BookingListUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff\BookingCreationUC.resx">
+      <DependentUpon>BookingCreationUC.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

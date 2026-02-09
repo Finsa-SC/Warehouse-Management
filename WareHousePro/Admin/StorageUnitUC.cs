@@ -33,6 +33,7 @@ namespace WareHousePro.Admin
         {
             string query = @"
                     SELECT 
+                        s.unit_id AS ID,
                         s.unit_code AS [Unit Code],
                         w.name AS Warehouse,
                         t.type_name AS [Storage Type],
@@ -80,6 +81,11 @@ namespace WareHousePro.Admin
                 MessageBox.Show("Unit code already exist", "Exist data", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (requiredCapacity())
+            {
+                MessageBox.Show("Unit capacity requirement is invalid", "Mismatch data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (ValidationHelper.hasNull(this, out string msg))
             {
                 MessageBox.Show(msg, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -116,6 +122,11 @@ namespace WareHousePro.Admin
             if(ValidationHelper.hasNull(this, out string msg))
             {
                 MessageBox.Show(msg, "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (requiredCapacity())
+            {
+                MessageBox.Show("Unit capacity requirement is invalid", "Mismatch data", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (StorageId > 0)
@@ -181,6 +192,7 @@ namespace WareHousePro.Admin
             if(e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                StorageId = Convert.ToInt32(row.Cells["ID"].Value);
                 cmbWarehouse.SelectedIndex = cmbWarehouse.FindStringExact(row.Cells["Warehouse"].Value.ToString());
                 cmbType.SelectedIndex = cmbType.FindStringExact(row.Cells["Storage Type"].Value.ToString());
                 txtCode.Text = row.Cells["Unit Code"].Value.ToString();
@@ -204,6 +216,18 @@ namespace WareHousePro.Admin
             string query = "SELECT COUNT(*) FROM storage_units WHERE unit_code = @u";
             object unit = DBHelper.ExecuteScalar(query, new SqlParameter("@u", txtCode.Text));
             return Convert.ToInt32(unit) > 0;
+        }
+
+        private bool requiredCapacity()
+        {
+            string query = @"
+SELECT COUNT(*) FROM storage_unit_types WHERE type_id = @id AND (min_capacity > @c OR max_capacity < @c)
+";
+            object capacity = DBHelper.ExecuteScalar(query,
+                new SqlParameter("@c", Convert.ToInt32(txtCapacity.Text)),
+                new SqlParameter("@id", cmbType.SelectedValue)
+            );
+            return Convert.ToInt32(capacity) > 0;
         }
     }
 }

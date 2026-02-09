@@ -12,7 +12,7 @@ namespace WareHousePro.core.util
         public static void onlyNumber(KeyPressEventArgs e, out string msg)
         {
             msg = string.Empty;
-            if(!char.IsDigit(e.KeyChar) || e.KeyChar != (char)Keys.Back)
+            if(!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
             {
                 e.Handled = true;
                 msg = "Only number available in this input";

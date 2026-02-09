@@ -19,7 +19,7 @@ namespace WareHousePro
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            loadUC(new Admin.UserManagementUC());
+            role();
         }
 
         private void loadUC(UserControl uc)
@@ -47,6 +47,42 @@ namespace WareHousePro
         private void btnStorageUnit_Click(object sender, EventArgs e)
         {
             loadUC(new Admin.StorageUnitUC());
+        }
+
+        private void btnVoucher_Click(object sender, EventArgs e)
+        {
+            loadUC(new Admin.VoucherManagementUC());
+        }
+
+        //check role
+        private void role()
+        {
+            switch (UserSession.roleId)
+            {
+                case 1:
+                    pnlAdmin.Visible = true;
+                    loadUC(new Admin.DashboardUC());
+                    break;
+                case 2:
+                    pnlStaff.Visible = true;
+                    loadUC(new Staff.BookingCreationUC());
+                    break;
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            loadUC(new Staff.BookingCreationUC());
+        }
+
+        private void btnBookingList_Click(object sender, EventArgs e)
+        {
+            loadUC(new Public.BookingListUC());
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            loadUC(new Admin.DashboardUC());
         }
     }
 }

@@ -39,16 +39,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.txtCode = new System.Windows.Forms.TextBox();
-            this.txtCapacity = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtValue = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtMax = new System.Windows.Forms.TextBox();
             this.dteFrom = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.dteTo = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtUsed = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,12 +57,13 @@
             this.btnDelete.BackColor = System.Drawing.Color.Maroon;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(1280, 300);
+            this.btnDelete.Location = new System.Drawing.Point(1305, 300);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(226, 71);
+            this.btnDelete.Size = new System.Drawing.Size(182, 71);
             this.btnDelete.TabIndex = 48;
-            this.btnDelete.Text = "Change Status";
+            this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnClear
             // 
@@ -75,6 +76,7 @@
             this.btnClear.TabIndex = 49;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnEdit
             // 
@@ -87,6 +89,7 @@
             this.btnEdit.TabIndex = 50;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -99,6 +102,7 @@
             this.btnAdd.TabIndex = 51;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click_1);
             // 
             // cmbType
             // 
@@ -106,8 +110,8 @@
             this.cmbType.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Items.AddRange(new object[] {
-            "In Active",
-            "Active"});
+            "Percent",
+            "Fixed"});
             this.cmbType.Location = new System.Drawing.Point(30, 149);
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(517, 53);
@@ -147,6 +151,7 @@
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(1521, 627);
             this.dataGridView1.TabIndex = 45;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label6
             // 
@@ -172,22 +177,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(626, 27);
+            this.label2.Location = new System.Drawing.Point(635, 118);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 26);
             this.label2.TabIndex = 41;
             this.label2.Text = "Price";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(796, 332);
-            this.txtSearch.MaxLength = 50;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(412, 50);
-            this.txtSearch.TabIndex = 36;
-            this.txtSearch.Tag = "nullable";
             // 
             // txtCode
             // 
@@ -199,25 +193,16 @@
             this.txtCode.Size = new System.Drawing.Size(517, 50);
             this.txtCode.TabIndex = 37;
             // 
-            // txtCapacity
+            // txtValue
             // 
-            this.txtCapacity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCapacity.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCapacity.Location = new System.Drawing.Point(36, 332);
-            this.txtCapacity.MaxLength = 50;
-            this.txtCapacity.Name = "txtCapacity";
-            this.txtCapacity.Size = new System.Drawing.Size(517, 50);
-            this.txtCapacity.TabIndex = 38;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(797, 306);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 26);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Search";
+            this.txtValue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtValue.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtValue.Location = new System.Drawing.Point(628, 53);
+            this.txtValue.MaxLength = 50;
+            this.txtValue.Name = "txtValue";
+            this.txtValue.Size = new System.Drawing.Size(517, 50);
+            this.txtValue.TabIndex = 38;
+            this.txtValue.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMax_KeyPress);
             // 
             // label4
             // 
@@ -233,27 +218,28 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(37, 306);
+            this.label1.Location = new System.Drawing.Point(629, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 26);
+            this.label1.Size = new System.Drawing.Size(159, 26);
             this.label1.TabIndex = 44;
-            this.label1.Text = "Used Voucher";
+            this.label1.Text = "Discount Value";
             // 
-            // textBox1
+            // txtMax
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(36, 246);
-            this.textBox1.MaxLength = 50;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(517, 50);
-            this.textBox1.TabIndex = 37;
+            this.txtMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMax.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMax.Location = new System.Drawing.Point(36, 246);
+            this.txtMax.MaxLength = 50;
+            this.txtMax.Name = "txtMax";
+            this.txtMax.Size = new System.Drawing.Size(517, 50);
+            this.txtMax.TabIndex = 37;
+            this.txtMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtMax_KeyPress);
             // 
-            // dateTimePicker1
+            // dteFrom
             // 
             this.dteFrom.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteFrom.Location = new System.Drawing.Point(619, 53);
-            this.dteFrom.Name = "dateTimePicker1";
+            this.dteFrom.Location = new System.Drawing.Point(628, 144);
+            this.dteFrom.Name = "dteFrom";
             this.dteFrom.Size = new System.Drawing.Size(580, 50);
             this.dteFrom.TabIndex = 52;
             // 
@@ -261,19 +247,41 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label7.Location = new System.Drawing.Point(626, 126);
+            this.label7.Location = new System.Drawing.Point(635, 217);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 26);
             this.label7.TabIndex = 41;
             this.label7.Text = "Price";
             // 
-            // dateTimePicker2
+            // dteTo
             // 
             this.dteTo.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dteTo.Location = new System.Drawing.Point(619, 152);
-            this.dteTo.Name = "dateTimePicker2";
+            this.dteTo.Location = new System.Drawing.Point(628, 243);
+            this.dteTo.Name = "dteTo";
             this.dteTo.Size = new System.Drawing.Size(580, 50);
             this.dteTo.TabIndex = 52;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label8.Location = new System.Drawing.Point(37, 306);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(150, 26);
+            this.label8.TabIndex = 44;
+            this.label8.Text = "Used Voucher";
+            // 
+            // txtUsed
+            // 
+            this.txtUsed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUsed.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsed.Location = new System.Drawing.Point(36, 332);
+            this.txtUsed.MaxLength = 50;
+            this.txtUsed.Name = "txtUsed";
+            this.txtUsed.ReadOnly = true;
+            this.txtUsed.Size = new System.Drawing.Size(517, 50);
+            this.txtUsed.TabIndex = 38;
+            this.txtUsed.Tag = "nullable";
             // 
             // VoucherManagementUC
             // 
@@ -291,15 +299,16 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtMax);
             this.Controls.Add(this.txtCode);
-            this.Controls.Add(this.txtCapacity);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtUsed);
+            this.Controls.Add(this.txtValue);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Name = "VoucherManagementUC";
             this.Size = new System.Drawing.Size(1600, 1051);
+            this.Load += new System.EventHandler(this.VoucherManagementUC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -317,15 +326,15 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.TextBox txtCode;
-        private System.Windows.Forms.TextBox txtCapacity;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtValue;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMax;
         private System.Windows.Forms.DateTimePicker dteFrom;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dteTo;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtUsed;
     }
 }
