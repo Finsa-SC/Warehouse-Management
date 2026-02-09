@@ -52,6 +52,12 @@
     <Compile Include="Admin\UserManagementUC.Designer.cs">
       <DependentUpon>UserManagementUC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\WarehouseUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\WarehouseUC.Designer.cs">
+      <DependentUpon>WarehouseUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="core\network\DBHelper.cs" />
     <Compile Include="core\util\ValidationHelper.cs" />
     <Compile Include="Form1.cs">
@@ -71,6 +77,9 @@
     <Compile Include="UserSession.cs" />
     <EmbeddedResource Include="Admin\UserManagementUC.resx">
       <DependentUpon>UserManagementUC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\WarehouseUC.resx">
+      <DependentUpon>WarehouseUC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

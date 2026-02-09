@@ -33,5 +33,15 @@ namespace WareHousePro
         {
             Application.Exit();
         }
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            loadUC(new Admin.UserManagementUC());
+        }
+
+        private void btnWarehouse_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
