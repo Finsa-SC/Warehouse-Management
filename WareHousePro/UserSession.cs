@@ -24,9 +24,6 @@ namespace WareHousePro
             username = "";
             roleId = 0;
         }
-        public static bool IsLoggedIn()
-        {
-            return id != 0;
-        }
+        public static bool IsLoggedIn() => id != 0;
     }
 }
